@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SortItem } from "shared/ui/SortItem";
-import type { ISortFlat } from "../model";
+import type { ISortFlat } from "..";
 
 interface IProps {
   sortList: ISortFlat[];
