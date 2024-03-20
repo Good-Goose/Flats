@@ -14,7 +14,6 @@ export default {
         'dark': '#353536',
         'gray-primary': '#CCCCCC',
         'gray-secondary': '#898989',
-        'grey-text': '#898989'
       }
     },
   },

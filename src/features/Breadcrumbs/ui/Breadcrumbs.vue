@@ -11,8 +11,12 @@ const path = ref(route.fullPath.split('/').length === 2 ? [''] : route.fullPath.
   <div class="flex gap-2 items-center">
     <div v-for="(item, index) in path" :key="index" class="flex gap-2 items-center">
       <p class="text-grey-text" v-if="item !== ''">/</p>
-      <RouterLink :to="`/${item}`" class="text-grey-text block hover:text-[#656565] duration-300">
-        {{ `${routeNaming[item]}` }}
+      <RouterLink :to="`/${item}`" class="text-gray-secondary block hover:text-[#656565] duration-300">
+
+        {{ `
+        ${//@ts-ignore
+      routeNaming[item]
+      }` }}
       </RouterLink>
 
     </div>
