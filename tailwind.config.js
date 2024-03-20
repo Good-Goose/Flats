@@ -13,7 +13,8 @@ export default {
       colors: {
         'dark': '#353536',
         'gray-primary': '#CCCCCC',
-        'gray-secondary': '#898989'
+        'gray-secondary': '#898989',
+        'grey-text': '#898989'
       }
     },
   },
