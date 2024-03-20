@@ -9,7 +9,13 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dark': '#353536',
+        'gray-primary': '#CCCCCC',
+        'gray-secondary': '#898989'
+      }
+    },
   },
   plugins: [],
 }
