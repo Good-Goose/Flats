@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { typeSortings } from "../model/lib/TypeSorting";
+import { typeSortings, type ITypeSorting } from "../model/lib/TypeSorting";
+import Dropdown from 'primevue/dropdown';
+import checkmark from 'shared/ui/Ico/checkmark.svg'
+import icSort from 'shared/ui/Ico/ic_sort.svg'
 
 interface IProps {
   valueAds: number;
@@ -8,21 +11,7 @@ interface IProps {
 
 const props = defineProps<IProps>();
 
-const sortSelectIndex = ref(0);
-const isAnimationSkipping = ref(false);
-
-const toggleSort = () => {
-  isAnimationSkipping.value = true;
-
-  setTimeout(() => {
-    if (typeSortings[sortSelectIndex.value + 1] !== undefined) {
-      sortSelectIndex.value++;
-    } else {
-      sortSelectIndex.value = 0;
-    }
-    isAnimationSkipping.value = false;
-  }, 250);
-};
+const sortSelect = ref<ITypeSorting>(typeSortings[0]);
 </script>
 
 <template lang="html">
@@ -31,54 +20,27 @@ const toggleSort = () => {
       >{{ valueAds }} объявлений</span
     >
     <div class="flex gap-4">
-      <button @click="toggleSort" class="overflow-hidden">
-        <div
-          class="text-base font-medium duration-400"
-          :class="
-            isAnimationSkipping
-              ? 'animation-scroll-down'
-              : 'animation-scroll-up'
-          "
-        >
-          {{ typeSortings[sortSelectIndex].name }}
-        </div>
-      </button>
+      <div class="flex items-center">
+        <ic-sort/>
+        <Dropdown class="text-base font-medium" v-model="sortSelect" :options="typeSortings" sho optionLabel="name"/>
+      </div>
+
       <button
-        class="bg-gray-secondary text-sm font-medium px-[91px] py-3 duration-300 text-white hover:bg-gray-secondary/80"
+        class="flex items-center bg-gray-secondary px-[91px] py-3 duration-300 hover:bg-gray-secondary/80"
       >
-        На карте
+        <checkmark class="mr-2 text-white"/>
+        <span class="text-sm font-medium text-white">На карте</span>
       </button>
     </div>
   </div>
 </template>
 <style>
-.animation-scroll-down {
-  animation: scrollAnimationDown 0.2s forwards;
-}
 
-.animation-scroll-up {
-  animation: scrollAnimationUp 0.2s forwards;
+.p-dropdown-trigger{
+  display: none;
 }
-
-@keyframes scrollAnimationUp {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scrollAnimationDown {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
+.p-dropdown{
+  box-shadow: none;
+  outline: none;
 }
 </style>
