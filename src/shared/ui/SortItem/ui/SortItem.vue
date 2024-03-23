@@ -10,8 +10,8 @@ const props = defineProps<IProps>();
 
 <template>
   <button
-    :class="isActive && 'bg-dark border-none hover:bg-dark/90'"
-    class="flex border-2 border-solid border-gray px-4 py-2 gap-4 duration-300 hover:border-dark"
+    :class="isActive && 'bg-dark hover:bg-dark/90 border-transparent'"
+    class="flex border-2 border-solid border-gray-middle px-4 py-2 gap-4 duration-300 hover:border-dark/60"
   >
     <p
       :class="isActive && 'text-white'"

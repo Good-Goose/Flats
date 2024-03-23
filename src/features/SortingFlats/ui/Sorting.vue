@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import Dropdown from "primevue/dropdown";
 import { ref } from "vue";
-import { typeSortings } from "../model/lib/TypeSorting";
+import { typeSortings, type ITypeSorting } from "../model/lib/TypeSorting";
+import icMark from "shared/ui/Ico/ic_mark.svg";
+import icSort from "shared/ui/Ico/ic_sort.svg";
 
 interface IProps {
   valueAds: number;
@@ -8,77 +11,37 @@ interface IProps {
 
 const props = defineProps<IProps>();
 
-const sortSelectIndex = ref(0);
-const isAnimationSkipping = ref(false);
-
-const toggleSort = () => {
-  isAnimationSkipping.value = true;
-
-  setTimeout(() => {
-    if (typeSortings[sortSelectIndex.value + 1] !== undefined) {
-      sortSelectIndex.value++;
-    } else {
-      sortSelectIndex.value = 0;
-    }
-    isAnimationSkipping.value = false;
-  }, 250);
-};
+const sortSelect = ref<ITypeSorting>(typeSortings[0]);
 </script>
 
 <template lang="html">
   <div class="flex flex-wrap justify-between items-center">
-    <span class="text-gray-secondary text-base font-medium"
+    <span class="text-gray-dark-1 text-base font-medium"
       >{{ valueAds }} объявлений</span
     >
     <div class="flex gap-4">
-      <button @click="toggleSort" class="overflow-hidden">
-        <div
-          class="text-base font-medium duration-400"
-          :class="
-            isAnimationSkipping
-              ? 'animation-scroll-down'
-              : 'animation-scroll-up'
-          "
-        >
-          {{ typeSortings[sortSelectIndex].name }}
-        </div>
-      </button>
+      <div class="flex items-center">
+        <ic-sort />
+        <Dropdown
+          class="text-base font-medium outline-none shadow-none"
+          v-model="sortSelect"
+          :options="typeSortings"
+          optionLabel="name"
+          placeholder="Select a City"
+        />
+      </div>
+
       <button
-        class="bg-gray-secondary text-sm font-medium px-[91px] py-3 duration-300 text-white hover:bg-gray-secondary/80"
+        class="flex gap-2 items-center bg-gray-dark-1 px-[91px] py-3 duration-300 hover:bg-gray-dark-1/80"
       >
-        На карте
+        <ic-mark class="text-white" />
+        <span class="text-white text-sm font-medium">На карте</span>
       </button>
     </div>
   </div>
 </template>
 <style>
-.animation-scroll-down {
-  animation: scrollAnimationDown 0.2s forwards;
-}
-
-.animation-scroll-up {
-  animation: scrollAnimationUp 0.2s forwards;
-}
-
-@keyframes scrollAnimationUp {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scrollAnimationDown {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
+.p-dropdown-trigger {
+  display: none;
 }
 </style>
