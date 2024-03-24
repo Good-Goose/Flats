@@ -30,9 +30,31 @@ export default defineNuxtConfig({
     // '@pinia/nuxt',
     // '@vueuse/nuxt',
     // '@nuxtjs/eslint-module',
-    "nuxt-svgo",
     "nuxt-primevue",
+    "nuxt-svgo",
   ],
+  svgo: {
+    svgoConfig: {
+      multipass: true,
+      plugins: [
+        {
+          name: "preset-default",
+          params: {
+            overrides: {
+              // customize default plugin options
+              inlineStyles: {
+                onlyMatchedOnce: false,
+              },
+
+              // or disable plugins
+              removeDoctype: false,
+              removeViewBox: false,
+            },
+          },
+        },
+      ],
+    },
+  },
   css: ["primevue/resources/themes/aura-light-green/theme.css"],
   build: {},
 });
