@@ -31,6 +31,46 @@ const dataTest: ISortFlat[] = [
     name: "5-комнатные",
     count: 124,
   },
+  {
+    id: 6,
+    name: "Студии",
+    count: 9325,
+  },
+  {
+    id: 7,
+    name: "Офисы",
+    count: 9325,
+  },
+  {
+    id: 8,
+    name: "Участки",
+    count: 9325,
+  },
+  {
+    id: 9,
+    name: "Дома",
+    count: 9325,
+  },
+  {
+    id: 10,
+    name: "Катеджи",
+    count: 9325,
+  },
+  {
+    id: 11,
+    name: "Особняки",
+    count: 9325,
+  },
+  {
+    id: 12,
+    name: "Комнаты",
+    count: 9325,
+  },
+  {
+    id: 13,
+    name: "Отели",
+    count: 9325,
+  },
 ];
 </script>
 <template lang="html">
