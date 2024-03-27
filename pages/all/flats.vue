@@ -4,6 +4,7 @@ import Breadcrumbs from "~/src/features/Breadcrumbs/ui/Breadcrumbs.vue";
 import Sort from "widgets/Sort/ui/Sort.vue";
 import type { IFlat } from "~/src/entities/flat";
 import { FlatList } from "widgets/FlatList";
+import { Filter } from "widgets/Filter";
 
 const dataTest: IFlat[] = [
   {
@@ -63,11 +64,11 @@ const dataTest: IFlat[] = [
     ],
   },
 ];
-
 </script>
 <template lang="html">
   <CatalogLayout>
     <Breadcrumbs />
+    <Filter class="mb-10 mt-4" />
     <Sort />
     <FlatList class="mt-20" :flats="dataTest" :total-count="55" />
   </CatalogLayout>
